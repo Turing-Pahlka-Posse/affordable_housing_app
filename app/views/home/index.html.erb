@@ -1,0 +1,24 @@
+<h2>Affordable Housing App Home</h2>
+<%= form_tag '/' do %>
+  <%= label_tag "Address 1" %>
+  <%= text_field_tag "Address 1" %><br>
+  <%= label_tag "Address 2" %>
+  <%= text_field_tag "Address 2" %><br>
+  <%= label_tag "Address 3" %>
+  <%= text_field_tag "Address 3" %><br>
+  <%= label_tag "Max Price" %>
+  <%= text_field_tag "Max Price" %><br>
+  <%= radio_button_tag(:transportation, "public") %>
+  <%= label_tag(:transportation, "Public Transportation") %><br>
+  <%= radio_button_tag(:transportation, "car") %>
+  <%= label_tag(:transportation, "Car") %><br>
+  <%= radio_button_tag(:transportation, "public_and_car") %>
+  <%= label_tag(:transportation, "Public Transportation and Car") %><br>
+  <%= submit_tag "Find me some neighborhoods!"%>
+<% end  %>
+<br>
+<br>
+<% @neighborhoods.each do |neighborhood| %>
+  <%= neighborhood %>
+  <br>
+<% end %>
