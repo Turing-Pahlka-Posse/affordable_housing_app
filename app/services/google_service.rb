@@ -5,7 +5,7 @@ class GoogleService
     @connection = Faraday.new("https://maps.googleapis.com/maps/api/distancematrix/json")
   end
 
-  def distance
+  def distance(loc_1, loc_2, trans_type)
     response = parse(connection.get("?origins=Vancouver+BC%7CSeattle&destinations=San+Francisco%7CVictoria+BC&mode=bicycling&language=fr-FR&key=#{ENV['GOOGLE_API_KEY']}"))
   end
 
