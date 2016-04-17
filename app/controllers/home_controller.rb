@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def index
-    service = GoogleService.new
-    @neighborhoods = service.addresses
+    analyst = NeighborhoodAnalyst.new
+    @neighborhoods = analyst.top_three_neighborhoods
   end
 end
