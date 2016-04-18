@@ -8,12 +8,14 @@
   <%= text_field_tag "Address 3" %><br>
   <%= label_tag "Max Price" %>
   <%= text_field_tag "Max Price" %><br>
-  <%= radio_button_tag(:transportation, "public") %>
+  <%= radio_button_tag(:transportation, "transit") %>
   <%= label_tag(:transportation, "Public Transportation") %><br>
-  <%= radio_button_tag(:transportation, "car") %>
+  <%= radio_button_tag(:transportation, "driving") %>
   <%= label_tag(:transportation, "Car") %><br>
-  <%= radio_button_tag(:transportation, "public_and_car") %>
-  <%= label_tag(:transportation, "Public Transportation and Car") %><br>
+  <%= radio_button_tag(:transportation, "walking") %>
+  <%= label_tag(:transportation, "Walking") %><br>
+  <%= radio_button_tag(:transportation, "bicycling") %>
+  <%= label_tag(:transportation, "Bicycling") %><br>
   <%= submit_tag "Find me some neighborhoods!"%>
 <% end  %>
 <br>

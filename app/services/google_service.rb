@@ -6,7 +6,9 @@ class GoogleService
   end
 
   def distance(loc_1, loc_2, trans_type)
-    response = parse(connection.get("?origins=Vancouver+BC%7CSeattle&destinations=San+Francisco%7CVictoria+BC&mode=bicycling&language=fr-FR&key=#{ENV['GOOGLE_API_KEY']}"))
+    time = Time.now.utc.next_week(:tuesday).to_i + (((60*14)+30)*60)
+    response = parse(connection.get("?origins=#{loc_1}&destinations=#{loc_2}&mode=#{trans_type}&departure_time=#{time}&language=en&key=#{ENV['GOOGLE_API_KEY']}"))
+    response[:rows][0][:elements][0][:distance][:value]
   end
 
   private
