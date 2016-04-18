@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe NeighborhoodAnalyst, type: :model do
-  pending it "finds top three neighborhoods given 1 address with coordinates" do
+  it "finds top three neighborhoods given 1 address with coordinates" do
     addresses = ["39.7497488,-105.0012001"]
     trans_type = "public"
 

@@ -1,11 +1,16 @@
+require 'pry'
 class GoogleService
-  attr_reader :connection
+  attr_reader :connection, :loc_1, :loc_2, :trans_type
 
-  def initialize
+  def initialize(loc_1, loc_2, trans_type)
     @connection = Faraday.new("https://maps.googleapis.com/maps/api/distancematrix/json")
+    @loc_1 = loc_1
+    @loc_2 = loc_2
+    @trans_type = trans_type
   end
 
-  def distance(loc_1, loc_2, trans_type)
+  def distance
+    binding.pry
     response = parse(connection.get("?origins=Vancouver+BC%7CSeattle&destinations=San+Francisco%7CVictoria+BC&mode=bicycling&language=fr-FR&key=#{ENV['GOOGLE_API_KEY']}"))
   end
 
