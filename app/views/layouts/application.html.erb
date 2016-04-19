@@ -12,17 +12,6 @@
     </style>
 </head>
 <body>
-
-<div id='map'></div>
-<script>
-mapboxgl.accessToken = 'pk.eyJ1IjoianVseXl0cmFuIiwiYSI6ImNpbjR3ZnhhYzBjZ212b2x1YW9tY3ZkbXEifQ.GvY9zVwoB892cpsaLSUztA';
-var map = new mapboxgl.Map({
-    container: 'map', // container id
-    style: 'mapbox://styles/julyytran/cin4v8s4w0007b5nht2habg8n', //stylesheet location
-    center: [-105.016185, 39.736985], // starting position
-    zoom: 9 // starting zoom
-});
-</script>
-
+<%= yield %>
 </body>
 </html>
