@@ -1,7 +1,7 @@
 body {
   margin:0;
   padding:0;
-  background-color: blue;
+  background-color: white;
 }
 
 #map {
@@ -9,5 +9,6 @@ body {
   top:0;
   bottom:0;
   width:100%;
-  margin-top: 45px;
+  margin-top: 400px;
+  margin-bottom: 50px;
 }
