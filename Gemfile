@@ -10,6 +10,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'figaro'
 gem 'faraday'
 gem 'google-api-client', '0.9'
+gem 'haversine'
+gem 'geocoder'
 
 group :development, :test do
   gem 'byebug'

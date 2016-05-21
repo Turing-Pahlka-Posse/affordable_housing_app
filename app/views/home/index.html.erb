@@ -1,5 +1,5 @@
 <h2>Affordable Housing App Home</h2>
-<%= form_tag '/' do %>
+<%= form_tag '/home', method: :post do %>
   <%= label_tag "Address 1" %>
   <%= text_field_tag "Address 1" %><br>
   <%= label_tag "Address 2" %>
@@ -20,7 +20,11 @@
 <% end  %>
 <br>
 <br>
-<% @neighborhoods.each do |neighborhood| %>
-  <%= neighborhood %>
-  <br>
+<% if @top_three %>
+<h3>Top 3 Neighborhoods</h3>
+  <% @top_three.each do |neighborhood| %>
+    Name: <%= neighborhood[1] %><br>
+    Average Travel Time: <%= neighborhood[0] %><br>
+    <h3>----------------</h3>
+  <% end %>
 <% end %>
