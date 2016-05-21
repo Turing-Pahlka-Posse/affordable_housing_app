@@ -1,6 +1,10 @@
 class HomeController < ApplicationController
   def index
-    analyst = NeighborhoodAnalyst.new
-    @neighborhoods = analyst.top_three_neighborhoods(addresses, trans_type)
+    @neighborhoods = NeighborhoodCoordinate.all
+  end
+
+  def create
+    @top_three = NeighborhoodAnalyst.top_three_neighborhoods(params)
+    render :index
   end
 end
