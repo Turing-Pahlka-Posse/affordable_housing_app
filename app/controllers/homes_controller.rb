@@ -1,4 +1,4 @@
-class HomeController < ApplicationController
+class HomesController < ApplicationController
   def index
     @neighborhoods = NeighborhoodCoordinate.all
   end

@@ -5,6 +5,7 @@ class NeighborhoodAnalyst
     address1 = InputAddress.create(address: params["Address 1"])
     address2 = InputAddress.create(address: params["Address 2"])
     address3 = InputAddress.create(address: params["Address 3"])
+    trans_type = params["transportation"]
     addresses = [address1, address2, address3]
 
     all_neighborhoods = NeighborhoodCoordinate.all
@@ -21,7 +22,7 @@ class NeighborhoodAnalyst
       neigh = NeighborhoodCoordinate.find_by(name: neighborhood[0])
       addresses.map do |address|
         loc_1 = "#{address.latitude},#{address.longitude}"
-        service.distance(loc_1, neigh.coordinates)
+        service.distance(loc_1, neigh.coordinates, trans_type)
       end
     end.map { |result| result.reduce :+ }.zip(results.map { |r| r[0]}).sort.take(3)
   end

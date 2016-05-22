@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  root 'home#index'
-
-  post '/home', to: 'home#create', as: :home
-  # resources :homes, only: [:create, :index]
+  root 'homes#index'
+  # resources :homes, only: [:index]
+  get '/homes', to: 'homes#index'
+  post '/homes', to: 'homes#create'
 end

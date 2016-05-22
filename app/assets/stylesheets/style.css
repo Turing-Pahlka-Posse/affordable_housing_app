@@ -1,0 +1,23 @@
+body, html {
+  height: 100%;
+}
+
+body {
+  font-family: Tahoma;
+}
+
+#menu {
+  display: inline-block;
+  padding-left: 30px;
+  border: solid 2px;
+  width: 325px;
+  height: 100%;
+  background-color: #7B97BA;
+}
+
+#map-container {
+  display: inline-block;
+  border: solid 1px;
+  margin-left: -5px;
+  width: 400px;
+}
