@@ -1,55 +1,53 @@
 <div id="menu">
   <div id="input-addresses">
-    <h1>NeighborHome</h1>
+    <h1 id="main-title">NeighborHome</h1>
     <%= form_tag '/homes', method: :post do %>
-      <h3>Addresses</h3>
       <div class="this">
         <%= text_field_tag "Address 1", "1510 Blake st. Denver CO", class:"address-fields" %>
         <%= text_field_tag "Address 2", "Elkhart Elementary Aurora CO", class:"address-fields" %>
         <%= text_field_tag "Address 3", "Denver Art Museum", class:"address-fields" %>
       </div>
-      <div class="mix">
+      <div class="mix round-edges-35">
         <%= image_tag("dollar-sign.png", width: "35px") %>
       </div>
       <div class="price-field">
         <%= text_field_tag "Max Price", "Coming soon", class:"price" %>
       </div>
       <br />
-      <br />
 
-      <div class="trans-button">
+      <div class="trans-button round-edges-50">
         <input type="radio" class="radio_item" value="transit" name="transportation" id="transit">
         <label class="label_item" for="transit"><%= (image_tag "bus.png", width: "50px" ) %></label>
       </div>
-      <div class="trans-button">
+      <div class="trans-button round-edges-50">
         <input type="radio" class="radio_item" value="driving" name="transportation" id="driving">
         <label class="label_item" for="driving"><%= (image_tag "car.jpg", width: "50px" ) %></label>
       </div>
-      <div class="trans-button">
+      <div class="trans-button round-edges-50">
         <input type="radio" class="radio_item" value="walking" name="transportation" id="walking">
         <label class="label_item" for="walking"><%= (image_tag "person.jpg", width: "50px" ) %></label>
       </div>
-      <div class="trans-button">
+      <div class="trans-button round-edges-50">
         <input type="radio" class="radio_item" value="bicycling" name="transportation" id="bicycling">
         <label class="label_item" for="bicycling"><%= (image_tag "bike.jpg", width: "50px" ) %></label>
       </div>
       <br />
       <br />
-      <%= submit_tag "Find me some neighborhoods!"%>
+      <div  >
+        <input type="submit" id="submit-button" value="Find some neighborhoods!" >
+      </div>
     <% end  %>
     <br>
-    <br>
-  </div>
-  <div>
-
   </div>
   <div id="return-addresses">
     <% if @top_three %>
     <h3>Top 3 Neighborhoods</h3>
       <% @top_three.each do |neighborhood| %>
-        Name: <%= neighborhood[1] %><br>
-        Average Travel Time: <%= neighborhood[0] %><br>
-        <h3>----------------</h3>
+        <div class="pick-3">
+          <strong><%= neighborhood[1] %></strong>
+        </div>
+        Average Travel Time: <%= neighborhood[0] %> min<br>
+        ----------------
       <% end %>
     <% end %>
   </div>

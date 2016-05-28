@@ -1,12 +1,25 @@
-.trans-button {
-  display: inline-block;
-  margin-left: 5px;
+.round-edges-35{
+    width:35px;
+    height:35px;
+    border-radius:20%;
+    overflow:hidden;
+}
+
+#rounded-price {
+    border-radius: 25px;
+    padding: 20px;
+    width: 200px;
+    height: 150px;
 }
 
 .address-fields {
+  border-radius: 10px;
+  padding-left: 5px;
   margin-bottom: 8px;
   width: 257px;
-  height: 20px;
+  height: 30px;
+  font-size: 15px;
+  font-family: Tahoma;
 }
 
 .price-field {
@@ -14,11 +27,23 @@
 }
 
 .price {
+  border-radius: 10px;
+  padding-left: 5px;
   float: left;
   width: 100px;
-  height: 30px;
+  height: 31px;
+  font-size: 15px;
+  font-family: Tahoma;
 }
 
 .mix {
   display: inline-block;
+}
+
+#submit-button {
+  border-radius: 10px;
+  font-size: 20px;
+  border: solid;
+  border-color: grey;
+  background-color: #175923;
 }
