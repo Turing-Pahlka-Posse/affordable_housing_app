@@ -1,5 +1,5 @@
 class NeighborhoodAnalyst
-    def self.top_three_neighborhoods(params)
+  def self.top_three_neighborhoods(params)
     service = GoogleService.new
 
     address1 = InputAddress.create(address: params["Address 1"])
@@ -24,6 +24,8 @@ class NeighborhoodAnalyst
         loc_1 = "#{address.latitude},#{address.longitude}"
         service.distance(loc_1, neigh.coordinates, trans_type)
       end
-    end.map { |result| result.reduce :+ }.zip(results.map { |r| r[0]}).sort.take(3)
+    end.map { |result| (result.reduce :+) / 180 }.zip(results.map do |r|
+      r[0]
+    end).sort.take(3)
   end
 end
