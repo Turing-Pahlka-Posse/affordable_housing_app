@@ -1,0 +1,26 @@
+body, html {
+  height: 100%;
+}
+
+body {
+  font-family: Tahoma;
+}
+
+#menu {
+  display: inline-block;
+  padding-left: 30px;
+  border: solid 2px;
+  width: 325px;
+  height: 99.4%;
+  background-color: #7B97BA;
+}
+
+.pick-3 {
+  font-size: 15px;
+  font-style: 
+}
+
+#map-container {
+  display: inline-block;
+  margin-left: -5px;
+}
