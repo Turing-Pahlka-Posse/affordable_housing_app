@@ -10,10 +10,7 @@ module Api
           "Address 3"=>"Denver Art Museum"
         }
         @top_three = NeighborhoodAnalyst.top_three_neighborhoods(params)
-          results = @top_three.map do |neighborhood|
-            Hash[["Distance", "Neighborhood"].zip(neighborhood)]
-          end
-        render json: results
+        render json: @top_three
       end
     end
   end
