@@ -26,6 +26,8 @@ class NeighborhoodAnalyst
       end
     end.map { |result| (result.reduce :+) / 180 }.zip(results.map do |r|
       r[0]
-    end).sort.take(3)
+    end).sort.take(3).map do |neighborhood|
+      Hash[["Distance", "Neighborhood"].zip(neighborhood)]
+    end
   end
 end
