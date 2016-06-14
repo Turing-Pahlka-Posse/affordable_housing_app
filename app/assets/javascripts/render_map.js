@@ -8,26 +8,19 @@ function renderBaseMap() {
 }
 
 function toggleNeighborhoods() {
-  var neighborhoodsLayer = L.geoJson(neighborhoods, {
-    style: getStyle
-  });
+  var neighborhoodsLayer = L.mapbox.featureLayer()
+    .setGeoJSON(neighborhoods);
+
   addLayer(neighborhoodsLayer, 'Neighborhoods', 1);
 }
 
-function getStyle() {
-  return {
-    weight: 2,
-    opacity: 0.8,
-    color: '#3887be',
-    fillOpacity: 0.35,
-    fillColor: '#82E899'
-   };
-}
-
-function addLayer(layer, name, zIndex) {
-  layer
+function addLayer(featureLayer, name, zIndex) {
+  featureLayer
   .setZIndex(zIndex)
   .addTo(map);
+
+  setStyle(featureLayer);
+  setHover(featureLayer);
 
   var layers = document.getElementById('menu-ui');
 
@@ -40,14 +33,84 @@ function addLayer(layer, name, zIndex) {
     e.preventDefault();
     e.stopPropagation();
 
-    if (map.hasLayer(layer)) {
-      map.removeLayer(layer);
+    if (map.hasLayer(featureLayer)) {
+      map.removeLayer(featureLayer);
       this.className = '';
     } else {
-      map.addLayer(layer);
+      map.addLayer(featureLayer);
       this.className = 'active';
     }
   };
 
   layers.appendChild(link);
+}
+
+function setHover(featureLayer) {
+  featureLayer.eachLayer(function(layer) {
+    layer.on({
+      mousemove: mousemove,
+      mouseout: mouseout,
+      click: zoomToFeature,
+      dblclick: zoomToMap
+    });
+  });
+}
+
+function setStyle(featureLayer) {
+  featureLayer.eachLayer(function(layer) {
+    layer.setStyle({
+      weight: 2,
+      opacity: 0.8,
+      color: '#3887be',
+      fillOpacity: 0.35,
+      fillColor: '#82E899'
+    });
+  });
+}
+
+var closeTooltip;
+
+function mousemove(e) {
+  var popup = new L.Popup({ autoPan: false });
+  var layer = e.target;
+
+  popup.setLatLng(e.latlng);
+  popup.setContent('<div class="marker-title">' + layer.feature.properties.name + '</div>');
+
+  if (!popup._map) popup.openOn(map);
+    window.clearTimeout(closeTooltip);
+
+  layer.setStyle({
+    weight: 3,
+    opacity: 0.8,
+    fillOpacity: 0.7
+  });
+
+  if (!L.Browser.ie && !L.Browser.opera) {
+    layer.bringToFront();
+  }
+}
+
+function mouseout(e) {
+  var layer = e.target;
+
+  layer.setStyle({
+    weight: 2,
+    opacity: 0.8,
+    color: '#3887be',
+    fillOpacity: 0.35,
+    fillColor: '#82E899'
+  });
+
+  closeTooltip = window.setTimeout(function() {
+    map.closePopup();
+  }, 100);
+}
+
+function zoomToFeature(e) {
+  map.fitBounds(e.target.getBounds());
+}
+
+function zoomToMap(e) {
+  map.setView([39.737074, -104.953460], 12);
 }
