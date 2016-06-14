@@ -8,8 +8,12 @@ body {
   top:0;
   bottom:0;
   position:absolute;
-  width:71.8%;
+  width: 85%;
   border: solid 1px;
+}
+
+#map-container {
+  margin-left: 210px
 }
 
 .menu-ui {
