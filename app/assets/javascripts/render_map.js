@@ -1,6 +1,7 @@
 $(document).ready(function () {
   renderBaseMap();
   toggleNeighborhoods();
+  findNeighborhoods();
 });
 
 function renderBaseMap() {

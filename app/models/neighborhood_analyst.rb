@@ -2,9 +2,9 @@ class NeighborhoodAnalyst
   # attr_reader :trans_type, :addresses
 
   def self.addresses(params)
-    address1 = InputAddress.create(address: params["Address 1"])
-    address2 = InputAddress.create(address: params["Address 2"])
-    address3 = InputAddress.create(address: params["Address 3"])
+    address1 = InputAddress.create(address: params["Address_1"])
+    address2 = InputAddress.create(address: params["Address_2"])
+    address3 = InputAddress.create(address: params["Address_3"])
     @addresses = [address1, address2, address3]
   end
 
