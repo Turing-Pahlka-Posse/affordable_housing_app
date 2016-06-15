@@ -7,10 +7,10 @@ class InputAddress < ActiveRecord::Base
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [self.latitude, self.longitude]
+        "coordinates": [self.longitude, self.latitude]
       },
       "properties": {
-        "Title": self.address,
+        "title": self.address
       }
     }
   end
