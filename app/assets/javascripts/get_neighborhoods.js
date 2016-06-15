@@ -28,7 +28,7 @@ function getNeighborhoods (address1, address2, address3) {
    },
    dataType: "json",
    success: function(data) {
-     spinner.stop()
+     spinner.stop();
      appendNeighborhoods(data);
    }
  });
