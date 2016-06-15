@@ -3,8 +3,15 @@ function findNeighborhoods() {
     address1 = $("#Address_1").val();
     address2 = $("#Address_2").val();
     address3 = $("#Address_3").val();
+    clearNeighborhooods();
     getNeighborhoods(address1, address2, address3);
   });
+}
+
+function clearNeighborhooods() {
+  $('#return-addresses').empty();
+  setStyle(neighborhoodsLayer);
+  names = [];
 }
 
 function getNeighborhoods (address1, address2, address3) {
