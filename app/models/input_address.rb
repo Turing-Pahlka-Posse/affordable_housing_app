@@ -10,7 +10,9 @@ class InputAddress < ActiveRecord::Base
         "coordinates": [self.longitude, self.latitude]
       },
       "properties": {
-        "title": self.address
+        "title": self.address,
+        "marker-color": "#63b6e5",
+        "marker-size": "large",
       }
     }
   end

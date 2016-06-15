@@ -4,6 +4,7 @@ function findNeighborhoods() {
     address2 = $("#Address_2").val();
     address3 = $("#Address_3").val();
     clearNeighborhooods();
+    clearMarkers();
     getNeighborhoods(address1, address2, address3);
     renderAddresses(address1, address2, address3);
   });

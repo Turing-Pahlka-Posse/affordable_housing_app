@@ -14,11 +14,15 @@ function renderAddresses(address1, address2, address3) {
  });
 }
 
+function renderMarkersLayer() {
+  addressMarkers = L.mapbox.featureLayer().addTo(map);
+}
+
 function createMarkers(addresses) {
-  // for (var i = 0; i < addresses.length; i++) {
-  //   L.marker(addresses[i].geometry.coordinates).addTo(map);
-  // }
-  debugger
-  var addressMarkers = L.mapbox.featureLayer().addTo(map);
+  addressMarkers = L.mapbox.featureLayer().addTo(map);
   addressMarkers.setGeoJSON(addresses);
+}
+
+function clearMarkers() {
+  map.removeLayer(addressMarkers);
 }
