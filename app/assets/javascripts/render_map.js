@@ -9,7 +9,7 @@ function renderBaseMap() {
 }
 
 function toggleNeighborhoods() {
-  var neighborhoodsLayer = L.mapbox.featureLayer()
+  neighborhoodsLayer = L.mapbox.featureLayer()
     .setGeoJSON(neighborhoods);
 
   addLayer(neighborhoodsLayer, 'Neighborhoods', 1);
