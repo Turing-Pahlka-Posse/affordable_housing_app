@@ -3,7 +3,6 @@ function findNeighborhoods() {
     address1 = $("#Address_1").val();
     address2 = $("#Address_2").val();
     address3 = $("#Address_3").val();
-    // renderSpinnner();
     clearNeighborhooods();
     getNeighborhoods(address1, address2, address3);
   });
