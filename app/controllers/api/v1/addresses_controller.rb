@@ -5,8 +5,12 @@ module Api
 
       def index
         @addresses = NeighborhoodAnalyst.addresses(params)
-        
-        render json: @addresses
+
+        @geojson = @addresses.map do |address|
+          address.build_geojson
+        end
+
+        render json: @geojson
       end
     end
   end
