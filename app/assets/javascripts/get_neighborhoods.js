@@ -19,7 +19,6 @@ function getNeighborhoods (address1, address2, address3) {
    dataType: "json",
    success: function(data) {
      appendNeighborhoods(data);
-    //  highlightNeighborhoods();
    }
  });
 }
@@ -28,25 +27,36 @@ function appendNeighborhoods(data) {
   for (var i = 0; i < data.length; i++) {
     $('#return-addresses').append(createNeighborhoodHTML(data[i]));
   }
+  highlightNeighborhoods();
 }
 
 function createNeighborhoodHTML (datum) {
-  return "<div class='pick-3'><strong>"
+  return "<div class='pick-3'><div id='"
   + datum.Neighborhood
-  + "</strong><br>Average Travel Time: "
+  + "'><strong>"
+  + datum.Neighborhood
+  + "</strong></div>Average Travel Time: "
   + datum.Distance
   + " min<br>----------------</div>"
 }
 
-// function highlightNeighborhoods() {
-//   neighborhoodsLayer.eachLayer(function(layer) {
-//     layer.setStyle({
-//       weight: 2,
-//       opacity: 0.8,
-//       color: '#3887be',
-//       fillOpacity: 0.35,
-//       fillColor: '#82E899'
-//     });
-//   });
-//   console.log("success");
-// }
+var names = [];
+
+function highlightNeighborhoods() {
+  neighborhoodsLayer.eachLayer(function(layer) {
+    var $neighborhoods = $('.pick-3').children();
+    for (var i = 0; i < $neighborhoods.length; i++) {
+      names.push($neighborhoods[i].id);
+    }
+
+    if (names.includes(layer.feature.properties.name)) {
+      layer.setStyle({
+        weight: 2,
+        opacity: 0.8,
+        color: '#3887be',
+        fillOpacity: 0.35,
+        fillColor: '#ffcc66'
+      });
+    }
+  });
+}
