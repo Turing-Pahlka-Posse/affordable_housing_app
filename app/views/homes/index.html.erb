@@ -1,44 +1,43 @@
-<div id="menu">
+<div id="menu" class="ui left fixed vertical menu">
+  <h1 id="main-title">NeighborHome</h1>
   <div id="input-addresses">
-    <h1 id="main-title">NeighborHome</h1>
-    <%= form_tag '/homes', method: :post do %>
-      <div class="this">
-        <%= text_field_tag "Address 1", "1510 Blake st. Denver CO", class:"address-fields" %>
-        <%= text_field_tag "Address 2", "Elkhart Elementary Aurora CO", class:"address-fields" %>
-        <%= text_field_tag "Address 3", "Denver Art Museum", class:"address-fields" %>
+      <div class="ui icon input">
+        <i class="marker icon"></i>
+        <input type="text" name="Address 1" id="Address_1" value="1510 Blake st. Denver, CO" class="item" ></input>
       </div>
-      <div class="mix round-edges-35">
-        <%= image_tag("dollar-sign.png", width: "35px") %>
+      <div class="ui icon input">
+        <i class="marker icon"></i>
+        <input type="text" name="Address 2" id="Address_2" value="4140 W 38th Ave, Denver, CO" class="item" ></input>
       </div>
-      <div class="price-field">
-        <%= text_field_tag "Max Price", "Coming soon", class:"price" %>
+      <div class="ui icon input">
+        <i class="marker icon"></i>
+        <input type="text" name="Address 3" id="Address_3" value="Denver Zoo" class="item" ></input>
       </div>
-      <br />
+      <div class="ui disabled icon input">
+        <i class="dollar icon"></i>
+        <input type="text" name="Max Price" id="Max_Price" value="Coming soon" class="price" ></input>
+      </div>
 
-      <div class="trans-button round-edges-50">
-        <input type="radio" class="radio_item" value="transit" name="transportation" id="transit">
-        <label class="label_item" for="transit"><%= (image_tag "bus.png", width: "50px" ) %></label>
-      </div>
-      <div class="trans-button round-edges-50">
-        <input type="radio" class="radio_item" value="driving" name="transportation" id="driving">
-        <label class="label_item" for="driving"><%= (image_tag "car.jpg", width: "50px" ) %></label>
-      </div>
-      <div class="trans-button round-edges-50">
-        <input type="radio" class="radio_item" value="walking" name="transportation" id="walking">
-        <label class="label_item" for="walking"><%= (image_tag "person.jpg", width: "50px" ) %></label>
-      </div>
-      <div class="trans-button round-edges-50">
-        <input type="radio" class="radio_item" value="bicycling" name="transportation" id="bicycling">
-        <label class="label_item" for="bicycling"><%= (image_tag "bike.jpg", width: "50px" ) %></label>
-      </div>
-      <br />
-      <br />
-      <div  >
-        <input type="submit" id="submit-button" value="Find some neighborhoods!" >
-      </div>
-    <% end  %>
-    <br>
+  <div class="trans-button round-edges-50">
+    <input type="radio" class="radio_item" value="transit" name="transportation" id="transit">
+    <label class="label_item" for="transit"><%= (image_tag "bus.png", width: "50px" ) %></label>
   </div>
+  <div class="trans-button round-edges-50">
+    <input type="radio" class="radio_item" value="driving" name="transportation" id="driving">
+    <label class="label_item" for="driving"><%= (image_tag "car.jpg", width: "50px" ) %></label>
+  </div>
+  <div class="trans-button round-edges-50">
+    <input type="radio" class="radio_item" value="walking" name="transportation" id="walking">
+    <label class="label_item" for="walking"><%= (image_tag "person.jpg", width: "50px" ) %></label>
+  </div>
+  <div class="trans-button round-edges-50">
+    <input type="radio" class="radio_item" value="bicycling" name="transportation" id="bicycling">
+    <label class="label_item" for="bicycling"><%= (image_tag "bike.jpg", width: "50px" ) %></label>
+  </div>
+
+    <button type="button" name="button" class="ui teal basic button" id="submit-button">Find neighborhoods!</button>
+  </div>
+
   <div id="return-addresses">
     <% if @top_three %>
     <h3>Top 3 Neighborhoods</h3>
@@ -52,6 +51,7 @@
     <% end %>
   </div>
 </div>
+
 <div id="map-container">
   <nav id='menu-ui' class='menu-ui'></nav>
   <div id='map'></div>

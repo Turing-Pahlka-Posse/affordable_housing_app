@@ -1,6 +1,8 @@
 $(document).ready(function () {
   renderBaseMap();
+  renderMarkersLayer();
   toggleNeighborhoods();
+  findNeighborhoods();
 });
 
 function renderBaseMap() {
@@ -8,7 +10,7 @@ function renderBaseMap() {
 }
 
 function toggleNeighborhoods() {
-  var neighborhoodsLayer = L.mapbox.featureLayer()
+  neighborhoodsLayer = L.mapbox.featureLayer()
     .setGeoJSON(neighborhoods);
 
   addLayer(neighborhoodsLayer, 'Neighborhoods', 1);
@@ -94,13 +96,23 @@ function mousemove(e) {
 function mouseout(e) {
   var layer = e.target;
 
-  layer.setStyle({
-    weight: 2,
-    opacity: 0.8,
-    color: '#3887be',
-    fillOpacity: 0.35,
-    fillColor: '#82E899'
-  });
+  if (names.includes(layer.feature.properties.name)) {
+    layer.setStyle({
+      weight: 2,
+      opacity: 0.8,
+      color: '#3887be',
+      fillOpacity: 0.35,
+      fillColor: '#ffcc66'
+    });
+  } else {
+    layer.setStyle({
+      weight: 2,
+      opacity: 0.8,
+      color: '#3887be',
+      fillOpacity: 0.35,
+      fillColor: '#82E899'
+    });
+  }
 
   closeTooltip = window.setTimeout(function() {
     map.closePopup();

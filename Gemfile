@@ -14,6 +14,7 @@ gem 'google-api-client', '0.9'
 gem 'haversine'
 gem 'geocoder'
 gem 'responders', '~> 2.0'
+gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
 
 group :production do
 gem 'rails_12factor'
