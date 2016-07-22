@@ -1,6 +1,6 @@
 class HomesController < ApplicationController
   def index
-    @neighborhoods = NeighborhoodCoordinate.all
+    @neighborhoods = Neighborhood.all
   end
 
   def create
