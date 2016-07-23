@@ -88,7 +88,22 @@ function setStyle(featureLayer) {
 
 function getStyle(featureLayer) {
   featureLayer.eachLayer(function(layer) {
-    debugger
+    // ajax call to get neighborhood rent
+    // currently the ajax call is not returning the neighborhood object
+    var neighborhood = $.ajax({
+      type: 'GET',
+      url:  '/api/v1/neighborhood_rent/',
+      dataType: 'json',
+      data: {name: layer.feature.properties.name},
+      success: function(results) {
+        // JSON.parse(results);
+        // return results;
+        // console.log(results)
+        // var neighborhood = response
+        // debugger
+      },
+    });
+    debugger;
     layer.setStyle({
       weight: 2,
       opacity: 0.8,

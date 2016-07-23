@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :neighborhoods, only: [:index]
       resources :addresses, only: [:index]
+      resources :neighborhood_rent, only: [:index]
     end
   end
 end
