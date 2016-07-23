@@ -1,11 +1,12 @@
 function findNeighborhoods() {
   $('#menu').on('click', '#submit-button', function() {
-    address1 = $("#Address_1").val();
-    address2 = $("#Address_2").val();
-    address3 = $("#Address_3").val();
+    var trans_type = $("input[name='transportation']:checked").val();
+    var address1 = $("#Address_1").val();
+    var address2 = $("#Address_2").val();
+    var address3 = $("#Address_3").val();
     clearNeighborhooods();
     clearMarkers();
-    getNeighborhoods(address1, address2, address3);
+    getNeighborhoods(address1, address2, address3, trans_type);
     renderAddresses(address1, address2, address3);
   });
 }
@@ -16,22 +17,23 @@ function clearNeighborhooods() {
   names = [];
 }
 
-function getNeighborhoods (address1, address2, address3) {
+function getNeighborhoods (address1, address2, address3, trans_type) {
   renderSpinnner();
   $.ajax({
-   type: "GET",
-   url: "/api/v1/neighborhoods/",
-   data: {
-       Address_1: address1,
-       Address_2: address2,
-       Address_3: address3,
-   },
-   dataType: "json",
-   success: function(data) {
-     spinner.stop();
-     appendNeighborhoods(data);
-   }
- });
+    type: "GET",
+    url: "/api/v1/neighborhoods/",
+    data: {
+      Address_1: address1,
+      Address_2: address2,
+      Address_3: address3,
+      transportation: trans_type,
+    },
+    dataType: "json",
+    success: function(data) {
+      spinner.stop();
+      appendNeighborhoods(data);
+    }
+  });
 }
 
 function appendNeighborhoods(data) {

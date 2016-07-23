@@ -15,7 +15,7 @@ class NeighborhoodAnalyst
     all_distances = cumulative_distance_hash(user_addresses(params))
     closest_distances = select_closest_neighborhoods(5, all_distances)
     durations = cumulative_duration_hash(user_addresses(params),
-      trans_type(params), closest_distances)
+    trans_type(params), closest_distances)
     select_closest_neighborhoods(3, durations)
   end
 
