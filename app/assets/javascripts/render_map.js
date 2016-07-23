@@ -15,24 +15,27 @@ function renderBaseMap() {
 
 
 function toggleNeighborhoods() {
-  var neighborhoodsLayer = L.mapbox.featureLayer()
-    .setGeoJSON(neighborhoods);
+  var neighborhoodsLayer = L.mapbox.featureLayer().setGeoJSON(neighborhoods);
+  var neighborhoodsLayer2 = L.mapbox.featureLayer().setGeoJSON(neighborhoods);
 //we would be wanting to get geoJSON for new neighborhood in here
 //maybe utilize addLayer function since it seems to be versatile
-// var affordabilityLayer = L.mapbox.featureLayer().setGeoJSON(affordability);
-// addLayer(affordabilityLayer, 'Affordability', 2)
 // addLayer function adds button within it
   addLayer(neighborhoodsLayer, 'Neighborhoods', 1);
+  addLayer(neighborhoodsLayer2, 'Affordability', 2);
 }
 
 function addLayer(featureLayer, name, zIndex) {
   featureLayer
-//css property that lets you set "what's in front or behind of all of your different elements"
+  // css property that lets you set "what's in front or behind of all of your different elements"
   .setZIndex(zIndex)
   .addTo(map);
+  if (name === 'Affordability') {
+    getStyle(featureLayer);
+  } else {
+    setStyle(featureLayer);
+    setHover(featureLayer);
+  }
 //setStyle sets the styling for the given neighborhood
-  setStyle(featureLayer);
-  setHover(featureLayer);
 
 //grabs info for button, refer to index.html.erb
   var layers = document.getElementById('menu-ui');
@@ -81,6 +84,33 @@ function setStyle(featureLayer) {
       fillColor: '#82E899'
     });
   });
+}
+
+function getStyle(featureLayer) {
+  featureLayer.eachLayer(function(layer) {
+    debugger
+    layer.setStyle({
+      weight: 2,
+      opacity: 0.8,
+      color: '#3887be',
+      fillOpacity: 0.35,
+      //only correlation b/w geoJSON data of neighborhoods and neighborhood rent data in database is the name
+      //we need to connect the two here to pass in appropriate rent for each neighborhood
+      fillColor: getColor(Math.floor(Math.random() * (1000 - 10)))
+    });
+  });
+}
+
+// get color depending on population density value
+function getColor(d) {
+    return d > 1000 ? '#8c2d04' :
+        d > 500  ? '#cc4c02' :
+        d > 200  ? '#ec7014' :
+        d > 100  ? '#fe9929' :
+        d > 50   ? '#fec44f' :
+        d > 20   ? '#fee391' :
+        d > 10   ? '#fff7bc' :
+        '#ffffe5';
 }
 
 var closeTooltip;
