@@ -4,7 +4,7 @@ module Api
       respond_to :json
 
       def index
-        @addresses = NeighborhoodAnalyst.addresses(params)
+        @addresses = NeighborhoodAnalyst.user_addresses(params)
 
         @geojson = @addresses.map do |address|
           address.build_geojson
