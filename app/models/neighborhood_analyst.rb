@@ -14,10 +14,8 @@ class NeighborhoodAnalyst
   def self.top_three_neighborhoods(params)
     addresses = user_addresses(params)
     all_distances = cumulative_distance_hash(addresses)
-    # require "pry"; binding.pry
     closest_distances = select_closest_neighborhoods(5, all_distances)
-    durations = cumulative_duration_hash(addresses,
-      trans_type(params), closest_distances)
+    durations = cumulative_duration_hash(addresses, trans_type(params), closest_distances)
     select_closest_neighborhoods(3, durations)
   end
 
@@ -62,5 +60,4 @@ class NeighborhoodAnalyst
        "Neighborhood" => neigh_distance_pair[0]}
     end
   end
-
 end
