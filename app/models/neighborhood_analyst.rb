@@ -12,16 +12,15 @@ class NeighborhoodAnalyst
   end
 
   def self.top_three_neighborhoods(params)
-    all_distances = cumulative_distance_hash(user_addresses(params))
+    addresses = user_addresses(params)
+    all_distances = cumulative_distance_hash(addresses)
     closest_distances = select_closest_neighborhoods(5, all_distances)
-    durations = cumulative_duration_hash(user_addresses(params),
-    trans_type(params), closest_distances)
+    durations = cumulative_duration_hash(addresses, trans_type(params), closest_distances)
     select_closest_neighborhoods(3, durations)
   end
 
   def self.calculate_distance(user_location, neighborhood)
-    Haversine.distance(user_location.latitude, user_location.longitude,
-      neighborhood.latitude, neighborhood.longitude).to_mi
+    Haversine.distance(user_location.latitude, user_location.longitude,neighborhood.latitude, neighborhood.longitude).to_mi
   end
 
   def self.calculate_duration(user_loc, trans_type, neigh)
@@ -32,20 +31,20 @@ class NeighborhoodAnalyst
 
   def self.cumulative_distance_hash(user_addresses)
     Neighborhood.all.reduce({}) do |distance_hash, neighborhood|
-      distance_hash[neighborhood.name] =
-        user_addresses.reduce(0) do |cumulative_distance, address|
-          cumulative_distance += calculate_distance(address, neighborhood)
-        end
+      distance_hash[neighborhood.name] = 0
+      distance_hash[neighborhood.name] += calculate_distance(user_addresses[0], neighborhood) if user_addresses[0]
+      distance_hash[neighborhood.name] += calculate_distance(user_addresses[1], neighborhood) if user_addresses[1]
+      distance_hash[neighborhood.name] += calculate_distance(user_addresses[2], neighborhood) if user_addresses[2]
       distance_hash
     end
   end
 
   def self.cumulative_duration_hash(user_addresses, trans_type, top_neighs)
     top_neighs.reduce({}) do |duration_hash, neighborhood|
-      duration_hash[neighborhood["Neighborhood"]] =
-        user_addresses.reduce(0) do |total_duration, address|
-          total_duration += calculate_duration(address, trans_type, neighborhood)
-        end
+      duration_hash[neighborhood["Neighborhood"]] = 0
+      duration_hash[neighborhood["Neighborhood"]] += calculate_duration(user_addresses[0], trans_type, neighborhood)
+      duration_hash[neighborhood["Neighborhood"]] += calculate_duration(user_addresses[1], trans_type, neighborhood)
+      duration_hash[neighborhood["Neighborhood"]] += calculate_duration(user_addresses[2], trans_type, neighborhood)
       duration_hash
     end
   end
@@ -61,5 +60,4 @@ class NeighborhoodAnalyst
        "Neighborhood" => neigh_distance_pair[0]}
     end
   end
-
 end
