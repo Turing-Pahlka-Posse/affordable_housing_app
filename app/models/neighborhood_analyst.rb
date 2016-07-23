@@ -11,6 +11,14 @@ class NeighborhoodAnalyst
     params["transportation"]
   end
 
+
+  def self.top_three_rent_neighborhoods(params)
+    aa = AffordabilityAnalyst.new
+    neighborhoods = aa.find_closest_rent_neighborhoods(params["Max_Price"])
+    self.format_top_rent_neighborhoods(neighborhoods)
+  end
+
+
   def self.top_three_neighborhoods(params)
     addresses = user_addresses(params)
     all_distances = cumulative_distance_hash(addresses)
@@ -52,6 +60,7 @@ class NeighborhoodAnalyst
   def self.select_closest_neighborhoods(num_neigh, neigh_hash)
     sorted = neigh_hash.sort_by {|name, dist| dist}.take(num_neigh)
     format_top_neighborhoods(sorted)
+
   end
 
   def self.format_top_neighborhoods(sorted_neighborhoods, num_addresses=3)
@@ -60,4 +69,12 @@ class NeighborhoodAnalyst
        "Neighborhood" => neigh_distance_pair[0]}
     end
   end
+
+  def self.format_top_rent_neighborhoods(neighborhoods)
+    neighborhoods.map do |neighborhood|
+      {"Rent" => neighborhood.rent,
+       "Neighborhood" => neighborhood.name}
+    end
+  end
+
 end

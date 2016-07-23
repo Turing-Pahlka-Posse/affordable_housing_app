@@ -13,7 +13,7 @@
         <i class="marker icon"></i>
         <input type="text" name="Address 3" id="Address_3" value="Denver Zoo" class="item" ></input>
       </div>
-      <div class="ui disabled icon input">
+      <div class="ui icon input">
         <i class="dollar icon"></i>
         <input type="text" name="Max Price" id="Max_Price" value="Coming soon" class="price" ></input>
       </div>
@@ -38,17 +38,11 @@
     <button type="button" name="button" class="ui teal basic button" id="submit-button">Find neighborhoods!</button>
   </div>
 
+
+
   <div id="return-addresses">
-    <% if @top_three %>
-    <h3>Top 3 Neighborhoods</h3>
-      <% @top_three.each do |neighborhood| %>
-        <div class="pick-3">
-          <strong><%= neighborhood[1] %></strong>
-        </div>
-        Average Travel Time: <%= neighborhood[0] %> min<br>
-        ----------------
-      <% end %>
-    <% end %>
+  </div>
+  <div id="return-rent">
   </div>
 </div>
 

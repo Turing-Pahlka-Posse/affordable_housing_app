@@ -28,4 +28,6 @@ RSpec.describe AffordabilityAnalyst, type: :model do
     expect(results.pluck(:name)).to eq(["lowest", "second_lowest", "third_lowest"])
   end
 
+  
+
 end
