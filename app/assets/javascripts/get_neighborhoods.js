@@ -36,14 +36,13 @@ function getNeighborhoods (address1, address2, address3, trans_type, max_price) 
       appendNeighborhoods(data);
     }
   });
+}
 
 function appendNeighborhoods(data) {
   for (var i = 0; i < data[0].length; i++) {
-    console.log("got in distance area")
     $('#return-addresses').append(createNeighborhoodHTML(data[0][i]));
   }
   for (var i = 0; i < data[1].length; i++) {
-    console.log("got in rent area")
     $('#return-rent').append(createNeighborhoodRentHTML(data[1][i]));
   }
   highlightNeighborhoods();
