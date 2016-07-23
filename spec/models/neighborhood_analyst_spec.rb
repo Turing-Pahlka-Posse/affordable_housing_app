@@ -3,14 +3,14 @@ require 'rails_helper'
 RSpec.describe NeighborhoodAnalyst, type: :model do
 
   it "calculates distance" do
-    neighborhood = NeighborhoodCoordinate.create(name: "Windsor", coordinates:
+    neighborhood = Neighborhood.create(name: "Windsor", coordinates:
       "39.7027778,-104.8847222")
     user_location = InputAddress.create(address: "1510 Blake Street, Denver, CO")
     expect(NeighborhoodAnalyst.calculate_distance(user_location, neighborhood).round).to eq(7)
   end
 
   it "calculates duration" do
-    NeighborhoodCoordinate.create(name: "Windsor", coordinates:
+    Neighborhood.create(name: "Windsor", coordinates:
       "39.7027778,-104.8847222")
     neighborhood = {"Neighborhood" => "Windsor"}
     user_location = InputAddress.create(address: "1510 Blake Street, Denver, CO")
@@ -20,9 +20,9 @@ RSpec.describe NeighborhoodAnalyst, type: :model do
   end
 
   it "generates neighborhood distance hash" do
-    neighborhood1 = NeighborhoodCoordinate.create(name: "Windsor",
+    neighborhood1 = Neighborhood.create(name: "Windsor",
       coordinates: "39.7027778,-104.8847222")
-    neighborhood2 = NeighborhoodCoordinate.create(name: "Whittier",
+    neighborhood2 = Neighborhood.create(name: "Whittier",
       coordinates: "39.7568611,-104.9663333")
     address1 = InputAddress.create(address: "1510 Blake Street, Denver, CO")
     address2 = InputAddress.create(address: "4140 W 38th Ave, Denver, CO")
@@ -37,9 +37,9 @@ RSpec.describe NeighborhoodAnalyst, type: :model do
   end
 
   it "generates neighborhood duration hash" do
-    NeighborhoodCoordinate.create(name: "Windsor",
+    Neighborhood.create(name: "Windsor",
       coordinates: "39.7027778,-104.8847222")
-    NeighborhoodCoordinate.create(name: "Whittier",
+    Neighborhood.create(name: "Whittier",
       coordinates: "39.7568611,-104.9663333")
     top_neighs = [{"Neighborhood" => "Windsor", "Distance" => 21},
       {"Neighborhood" => "Whittier", "Distance" => 7}]
@@ -63,17 +63,17 @@ RSpec.describe NeighborhoodAnalyst, type: :model do
   end
 
   it "selects five neighborhoods with shortest cumululative distance" do
-    neighborhood1 = NeighborhoodCoordinate.create(name: "Windsor",
+    neighborhood1 = Neighborhood.create(name: "Windsor",
       coordinates: "39.7027778,-104.8847222")
-    neighborhood2 = NeighborhoodCoordinate.create(name: "Whittier",
+    neighborhood2 = Neighborhood.create(name: "Whittier",
       coordinates: "39.7568611,-104.9663333")
-    neighborhood3 = NeighborhoodCoordinate.create(name: "Athmar Park",
+    neighborhood3 = Neighborhood.create(name: "Athmar Park",
       coordinates: "39.7040833,-105.0110000")
-    neighborhood4 = NeighborhoodCoordinate.create(name: "Baker",
+    neighborhood4 = Neighborhood.create(name: "Baker",
       coordinates: "39.7156667,-104.9939722")
-    neighborhood5 = NeighborhoodCoordinate.create(name: "Barnum",
+    neighborhood5 = Neighborhood.create(name: "Barnum",
       coordinates: "39.7181667,-105.0325556")
-    neighborhood6 = NeighborhoodCoordinate.create(name: "Auraria",
+    neighborhood6 = Neighborhood.create(name: "Auraria",
       coordinates: "39.7461389,-105.0082500")
 
     address1 = InputAddress.create(address: "1510 Blake Street, Denver, CO")

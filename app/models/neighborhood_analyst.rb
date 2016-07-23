@@ -26,12 +26,12 @@ class NeighborhoodAnalyst
 
   def self.calculate_duration(user_loc, trans_type, neigh)
     service = GoogleService.new
-    neigh = NeighborhoodCoordinate.find_by(name: neigh["Neighborhood"])
+    neigh = Neighborhood.find_by(name: neigh["Neighborhood"])
     service.duration(user_loc.coordinates, neigh.coordinates, trans_type)/60.0
   end
 
   def self.cumulative_distance_hash(user_addresses)
-    NeighborhoodCoordinate.all.reduce({}) do |distance_hash, neighborhood|
+    Neighborhood.all.reduce({}) do |distance_hash, neighborhood|
       distance_hash[neighborhood.name] =
         user_addresses.reduce(0) do |cumulative_distance, address|
           cumulative_distance += calculate_distance(address, neighborhood)

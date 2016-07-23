@@ -1,4 +1,4 @@
-class NeighborhoodCoordinate < ActiveRecord::Base
+class Neighborhood < ActiveRecord::Base
 
   def latitude
     coordinates.split(',').first.to_f
