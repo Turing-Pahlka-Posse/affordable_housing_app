@@ -1,31 +1,43 @@
 $(document).ready(function () {
   renderBaseMap();
+  //renderMarkersLayer is defined in renderAddresses.js
+  //utilizes ajax to "GET" the three addresses and
+  //createMarkers using said three addresses
   renderMarkersLayer();
   toggleNeighborhoods();
   findNeighborhoods();
 });
 
+//adding the base styling layer that July chose
 function renderBaseMap() {
   var baseLayer = L.mapbox.styleLayer('mapbox://styles/julyytran/ciohh5muy0010bpneqm1tg1ij').addTo(map);
 }
 
-function toggleNeighborhoods() {
-  neighborhoodsLayer = L.mapbox.featureLayer()
-    .setGeoJSON(neighborhoods);
 
+function toggleNeighborhoods() {
+  var neighborhoodsLayer = L.mapbox.featureLayer()
+    .setGeoJSON(neighborhoods);
+//we would be wanting to get geoJSON for new neighborhood in here
+//maybe utilize addLayer function since it seems to be versatile
+// var affordabilityLayer = L.mapbox.featureLayer().setGeoJSON(affordability);
+// addLayer(affordabilityLayer, 'Affordability', 2)
+// addLayer function adds button within it
   addLayer(neighborhoodsLayer, 'Neighborhoods', 1);
 }
 
 function addLayer(featureLayer, name, zIndex) {
   featureLayer
+//css property that lets you set "what's in front or behind of all of your different elements"
   .setZIndex(zIndex)
   .addTo(map);
-
+//setStyle sets the styling for the given neighborhood
   setStyle(featureLayer);
   setHover(featureLayer);
 
+//grabs info for button, refer to index.html.erb
   var layers = document.getElementById('menu-ui');
 
+//new button for affordability would need to be added here
   var link = document.createElement('a');
   link.href = '#';
   link.className = 'active';
@@ -34,10 +46,11 @@ function addLayer(featureLayer, name, zIndex) {
   link.onclick = function(e) {
     e.preventDefault();
     e.stopPropagation();
-
+//if neighborhoodlayer is there, take it off
     if (map.hasLayer(featureLayer)) {
       map.removeLayer(featureLayer);
       this.className = '';
+//if not, add it
     } else {
       map.addLayer(featureLayer);
       this.className = 'active';
