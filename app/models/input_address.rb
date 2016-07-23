@@ -16,4 +16,9 @@ class InputAddress < ActiveRecord::Base
       }
     }
   end
+
+  def coordinates
+    "#{self.latitude},#{self.longitude}"
+  end
+
 end

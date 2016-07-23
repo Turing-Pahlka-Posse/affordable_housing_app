@@ -80,6 +80,6 @@ neighborhoods = [
 ]
 
 neighborhoods.each do |neighborhood|
-  NeighborhoodCoordinate.create(name: neighborhood[:name],
+  Neighborhood.create(name: neighborhood[:name],
                                  coordinates: neighborhood[:coordinates])
 end
