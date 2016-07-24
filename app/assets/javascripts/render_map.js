@@ -35,7 +35,6 @@ function addLayer(featureLayer, name, zIndex) {
     setStyle(featureLayer);
     setHover(featureLayer);
   }
-//setStyle sets the styling for the given neighborhood
 
 //grabs info for button, refer to index.html.erb
   var layers = document.getElementById('menu-ui');
