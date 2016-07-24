@@ -89,42 +89,36 @@ function setStyle(featureLayer) {
 function getStyle(featureLayer) {
   featureLayer.eachLayer(function(layer) {
     // ajax call to get neighborhood rent
-    // currently the ajax call is not returning the neighborhood object
-    var neighborhood = $.ajax({
+    $.ajax({
       type: 'GET',
       url:  '/api/v1/neighborhood_rent/',
       dataType: 'json',
       data: {name: layer.feature.properties.name},
-      success: function(results) {
-        // JSON.parse(results);
-        // return results;
-        // console.log(results)
-        // var neighborhood = response
-        // debugger
+      success: function(neighborhood) {
+        handleColors(getColor(neighborhood.rent))
       },
     });
-    debugger;
-    layer.setStyle({
-      weight: 2,
-      opacity: 0.8,
-      color: '#3887be',
-      fillOpacity: 0.35,
-      //only correlation b/w geoJSON data of neighborhoods and neighborhood rent data in database is the name
-      //we need to connect the two here to pass in appropriate rent for each neighborhood
-      fillColor: getColor(Math.floor(Math.random() * (1000 - 10)))
-    });
+    function handleColors(neighborhoodColor) {
+      layer.setStyle({
+        weight: 2,
+        opacity: 0.8,
+        color: '#3887be',
+        fillOpacity: 0.35,
+        fillColor: neighborhoodColor
+      });
+    }
   });
 }
 
 // get color depending on population density value
 function getColor(d) {
-    return d > 1000 ? '#8c2d04' :
-        d > 500  ? '#cc4c02' :
-        d > 200  ? '#ec7014' :
-        d > 100  ? '#fe9929' :
-        d > 50   ? '#fec44f' :
-        d > 20   ? '#fee391' :
-        d > 10   ? '#fff7bc' :
+    return d > 5000 ? '#8c2d04' :
+           d > 3500 ? '#cc4c02' :
+           d > 3000 ? '#ec7014' :
+           d > 2500 ? '#fe9929' :
+           d > 2000 ? '#fec44f' :
+           d > 1500 ? '#fee391' :
+           d > 1000 ? '#fff7bc' :
         '#ffffe5';
 }
 
