@@ -59,7 +59,7 @@ RSpec.describe NeighborhoodAnalyst, type: :model do
       user_addresses = [address1, address2, address3]
 
     expected_neigh_names = NeighborhoodAnalyst.cumulative_duration_hash(user_addresses, "driving", top_neighs).keys
-    
+
     expect(expected_neigh_names).to eq(["Windsor", "Whittier"])
     expect(NeighborhoodAnalyst.cumulative_duration_hash(user_addresses, "driving", top_neighs)["Whittier"].round).to eq(34)
     expect(NeighborhoodAnalyst.cumulative_duration_hash(user_addresses, "driving", top_neighs)["Windsor"].round).to eq(76)
@@ -72,10 +72,10 @@ RSpec.describe NeighborhoodAnalyst, type: :model do
     expect(NeighborhoodAnalyst.select_closest_neighborhoods(2, neigh_hash).first["Distance"]*3).to eq(6)
   end
 
-      expect(expected_neigh_names).to eq(["Windsor", "Whittier"])
-      expect(NeighborhoodAnalyst.cumulative_duration_hash(user_addresses, "driving", top_neighs)["Whittier"].round).to eq(34)
-      expect(NeighborhoodAnalyst.cumulative_duration_hash(user_addresses, "driving", top_neighs)["Windsor"].ceil).to eq(77)
-    end
+    #   expect(expected_neigh_names).to eq(["Windsor", "Whittier"])
+    #   expect(NeighborhoodAnalyst.cumulative_duration_hash(user_addresses, "driving", top_neighs)["Whittier"].round).to eq(34)
+    #   expect(NeighborhoodAnalyst.cumulative_duration_hash(user_addresses, "driving", top_neighs)["Windsor"].ceil).to eq(77)
+    # end
 
     it "selects top neighborhoods with shortest distances or durations" do
       neigh_hash = {"Whittier" => 10, "Windsor" => 21, "Other1" => 6, "Other2" => 9}
