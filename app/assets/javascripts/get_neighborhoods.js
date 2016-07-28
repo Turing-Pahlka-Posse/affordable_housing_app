@@ -13,7 +13,6 @@ function findNeighborhoods() {
 
 function clearNeighborhooods() {
   $('#return-addresses').empty();
-  setStyle(neighborhoodsLayer);
   names = [];
 }
 
@@ -56,6 +55,8 @@ function createNeighborhoodHTML (datum) {
 var names = [];
 
 function highlightNeighborhoods() {
+  var neighborhoodsLayer = L.mapbox.featureLayer().setGeoJSON(neighborhoods);
+
   neighborhoodsLayer.eachLayer(function(layer) {
     var $neighborhoods = $('.pick-3').children();
     for (var i = 0; i < $neighborhoods.length; i++) {
