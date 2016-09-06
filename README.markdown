@@ -1,4 +1,4 @@
-## Pahlka Posse Affordable Housing App
+## Pahlka Posse Affordable Housing App - Neighborhome
 
 ### Overview
 Pahlka Posse is a group of Turing School students who are passionate about civic tech. We named our group after Jennifer Pahlka of Code for America, whose leadership has helped us understand the possibilities in this space.
@@ -10,15 +10,14 @@ While current housing tools take some individual preferences into consideration,
 ![affordable
 housing](/app/assets/images/affordable_housing.png "Logo Title Text 1")
 
+The first iteration of Neighborhome does the following:
+* asks users to provide three locations that are important to their daily lives (e.g. work, childcare, social service location)
+* asks users to identify the maximum rent they can afford.  
+* using Google's Distance Matrix API and a monthly data file from Zillow on rental prices, the app identifies neighborhoods within the user's price range which minimize travel distance in text and via map.  
+* chloropleth maps display rental information by neighborhood.  
 
-The first iteration of our app will return top neighborhoods based on the following user criteria:
-  * Locations visited regularly
-  * Access to and consistency of public transportation options
-  * Price range
-  * Schools
-  * Safety ratings
-  * Library locations
-  * Affordable and healthy food options
-  * Parks and green space
-  * Social services
-
+Next steps for the app include:
+* identifying an appropriate algorithm to weigh the relative importance of affordability and travel distance.
+* identifying most appropriate manner to display results to the user.
+* schedule a recurring job to retrieve the updated rental data file from Zillow.  
+* incorporate maps and information on public services.  
