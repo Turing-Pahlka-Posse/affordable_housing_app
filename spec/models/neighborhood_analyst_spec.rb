@@ -100,9 +100,7 @@ RSpec.describe NeighborhoodAnalyst, type: :model do
       expect(third).to be < fourth
       expect(fourth).to be < fifth
     end
-<<<<<<< 6fb58db4ae5bae6224dc96c0e9ad64ada4afbdbc
   end
-=======
 
     it "formats the top rent Neighborhoods " do
       n1= Neighborhood.create(name: "lowest", rent: 2400)
@@ -119,4 +117,4 @@ RSpec.describe NeighborhoodAnalyst, type: :model do
 
     end
 end
->>>>>>> Add top rent neighborhoods
+# Add top rent neighborhoods
