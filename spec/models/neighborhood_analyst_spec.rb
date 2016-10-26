@@ -101,3 +101,20 @@ RSpec.describe NeighborhoodAnalyst, type: :model do
       expect(fourth).to be < fifth
     end
   end
+
+    it "formats the top rent Neighborhoods " do
+      n1= Neighborhood.create(name: "lowest", rent: 2400)
+      n2= Neighborhood.create(name: "second_lowest", rent: 2401)
+      n3= Neighborhood.create(name: "third_lowest", rent: 2402)
+      aa = AffordabilityAnalyst.new
+      neighborhoods = aa.find_closest_rent_neighborhoods(2400)
+
+      result = NeighborhoodAnalyst.format_top_rent_neighborhoods(neighborhoods)
+
+      expect(result.first).to eq({"Rent" => n3.rent,
+       "Neighborhood" => n3.name})
+
+
+    end
+end
+# Add top rent neighborhoods

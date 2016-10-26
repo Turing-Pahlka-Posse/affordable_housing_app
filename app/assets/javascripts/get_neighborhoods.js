@@ -1,12 +1,14 @@
 function findNeighborhoods() {
   $('#menu').on('click', '#submit-button', function() {
+
     var trans_type = $("input[name='transportation']:checked").val();
     var address1 = $("#Address_1").val();
     var address2 = $("#Address_2").val();
     var address3 = $("#Address_3").val();
+    var max_price = $("#Max_Price").val();
     clearNeighborhooods();
     clearMarkers();
-    getNeighborhoods(address1, address2, address3, trans_type);
+    getNeighborhoods(address1, address2, address3, trans_type, max_price);
     renderAddresses(address1, address2, address3);
   });
 }
@@ -16,7 +18,7 @@ function clearNeighborhooods() {
   names = [];
 }
 
-function getNeighborhoods (address1, address2, address3, trans_type) {
+function getNeighborhoods (address1, address2, address3, trans_type, max_price) {
   renderSpinnner();
   $.ajax({
     type: "GET",
@@ -26,6 +28,7 @@ function getNeighborhoods (address1, address2, address3, trans_type) {
       Address_2: address2,
       Address_3: address3,
       transportation: trans_type,
+      Max_Price: max_price
     },
     dataType: "json",
     success: function(data) {
@@ -36,13 +39,17 @@ function getNeighborhoods (address1, address2, address3, trans_type) {
 }
 
 function appendNeighborhoods(data) {
-  for (var i = 0; i < data.length; i++) {
-    $('#return-addresses').append(createNeighborhoodHTML(data[i]));
+  for (var i = 0; i < data[0].length; i++) {
+    $('#return-addresses').append(createNeighborhoodHTML(data[0][i]));
+  }
+  for (var i = 0; i < data[1].length; i++) {
+    $('#return-rent').append(createNeighborhoodRentHTML(data[1][i]));
   }
   highlightNeighborhoods();
 }
 
 function createNeighborhoodHTML (datum) {
+
   return "<div class='pick-3'><div id='"
   + datum.Neighborhood
   + "'><strong>"
@@ -50,6 +57,17 @@ function createNeighborhoodHTML (datum) {
   + "</strong></div>Average Travel Time: "
   + datum.Distance
   + " min<br>----------------</div>"
+}
+
+function createNeighborhoodRentHTML (datum) {
+
+  return "<div class='pick-3'><div id='"
+  + datum.Neighborhood
+  + "'><strong>"
+  + datum.Neighborhood
+  + "</strong></div>Average Rent: "
+  + datum.Rent
+  + " <br>----------------</div>"
 }
 
 var names = [];
